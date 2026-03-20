@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jay-Ar & Nathalie Jade | Wedding</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400&family=Great+Vibes&family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --gold: #c5a059;
@@ -157,7 +157,10 @@
 
         /* Entourage Section */
         #entourage {
-            background-color: var(--light-grey);
+            background: linear-gradient(rgba(244, 244, 244, 0.8), rgba(244, 244, 244, 0.8)), url('https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&q=80&w=2070');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             max-width: 100%;
         }
 
@@ -170,14 +173,31 @@
         }
 
         .category { 
-            background: white;
+            background: rgba(255, 255, 255, 0.9);
             padding: 30px;
             border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.03);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .category h3 { 
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem; 
+            color: var(--gold); 
+            margin-bottom: 20px; 
+            text-transform: uppercase; 
+            letter-spacing: 2px;
+            font-weight: 700;
         }
         
-        .category h3 { font-size: 1.2rem; color: var(--gold); margin-bottom: 20px; text-transform: uppercase; letter-spacing: 2px; }
-        .name { display: block; font-size: 1rem; margin-bottom: 8px; color: #555; }
+        .name { 
+            display: block; 
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem; 
+            margin-bottom: 8px; 
+            color: #444; 
+            font-style: italic;
+        }
 
         /* RSVP */
         #rsvp {
@@ -243,7 +263,7 @@
 
     <section id="location">
         <h2 class="section-title">The Ceremony</h2>
-        <p>2:00 PM @ Our Lady of the Sacred Heart Parish-Capitol</p>
+        <p>1:00 PM @ Our Lady of the Sacred Heart Parish-Capitol</p>
         <p>N. Escario St, Cebu City</p>
         <a href="https://share.google/qYPrKjeETRuxB8jD8" class="map-btn">VIEW ON MAP</a>
         
@@ -302,15 +322,30 @@
     </footer>
 
     <script>
-        const weddingDate = new Date("May 2, 2026 14:00:00").getTime();
-        setInterval(function() {
+        function updateTimer() {
+            // Set time to 13:00 (1:00 PM) instead of 14:00 (2:00 PM)
+            const weddingDate = new Date("May 2, 2026 13:00:00").getTime();
             const now = new Date().getTime();
             const diff = weddingDate - now;
-            document.getElementById("days").innerText = Math.floor(diff / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
-            document.getElementById("hours").innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
-            document.getElementById("minutes").innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
-            document.getElementById("seconds").innerText = Math.floor((diff % (1000 * 60)) / 1000).toString().padStart(2, '0');
-        }, 1000);
+
+            if (diff <= 0) {
+                document.getElementById("countdown").innerHTML = "<p style='font-size: 2rem;'>Today is the day!</p>";
+                return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = days.toString().padStart(2, '0');
+            document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
+            document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
+            document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
+        }
+
+        setInterval(updateTimer, 1000);
+        updateTimer();
     </script>
 </body>
 </html>
