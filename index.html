@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jay-Ar & Nathalie Jade | Wedding</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400&family=Great+Vibes&family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400&family=Great+Vibes&display=swap" rel="stylesheet">
     <style>
         :root {
             --gold: #c5a059;
@@ -32,7 +32,6 @@
             font-weight: 400;
         }
 
-        /* Hero Section */
         .hero {
             height: 100vh;
             display: flex;
@@ -85,10 +84,9 @@
             animation: fadeInUp 2s ease-out;
         }
 
-        /* Countdown */
         #countdown { 
             display: flex; 
-            gap: 20px; 
+            gap: 15px; 
             margin-bottom: 30px;
             animation: fadeIn 3s ease-in;
         }
@@ -97,7 +95,7 @@
             background: rgba(255,255,255,0.15);
             backdrop-filter: blur(5px);
             padding: 15px; 
-            min-width: 85px; 
+            min-width: 80px; 
             border-radius: 8px; 
             border: 1px solid rgba(255,255,255,0.3);
         }
@@ -127,7 +125,6 @@
             margin-top: 10px; 
         }
 
-        /* Gallery Section */
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -155,9 +152,9 @@
             transform: scale(1.1);
         }
 
-        /* Entourage Section */
         #entourage {
-            background: linear-gradient(rgba(244, 244, 244, 0.8), rgba(244, 244, 244, 0.8)), url('https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&q=80&w=2070');
+            background: linear-gradient(rgba(244, 244, 244, 0.85), rgba(244, 244, 244, 0.85)), 
+                        url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=2070');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -173,33 +170,39 @@
         }
 
         .category { 
-            background: rgba(255, 255, 255, 0.9);
+            background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), 
+                        url('https://snipboard.io/NFetTa.jpg');
+            background-size: cover;
+            background-position: center;
             padding: 30px;
             border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.03);
             transition: transform 0.3s ease;
         }
 
+        .category:hover {
+            transform: translateY(-5px);
+        }
+        
         .category h3 { 
-            font-family: 'Cinzel', serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: 1.1rem; 
             color: var(--gold); 
             margin-bottom: 20px; 
             text-transform: uppercase; 
             letter-spacing: 2px;
-            font-weight: 700;
+            font-weight: 400;
         }
         
         .name { 
             display: block; 
-            font-family: 'Playfair Display', serif;
-            font-size: 1.1rem; 
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem; 
             margin-bottom: 8px; 
-            color: #444; 
-            font-style: italic;
+            color: #555; 
+            font-style: normal;
         }
 
-        /* RSVP */
         #rsvp {
             background: linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)), url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=2069');
             background-attachment: fixed;
@@ -234,6 +237,7 @@
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.8rem; }
             .time-box { min-width: 65px; }
+            #countdown { gap: 10px; }
         }
     </style>
 </head>
@@ -323,8 +327,7 @@
 
     <script>
         function updateTimer() {
-            // Set time to 13:00 (1:00 PM) instead of 14:00 (2:00 PM)
-            const weddingDate = new Date("May 2, 2026 13:00:00").getTime();
+            const weddingDate = new Date("2026-05-02T13:00:00+08:00").getTime();
             const now = new Date().getTime();
             const diff = weddingDate - now;
 
@@ -344,7 +347,7 @@
             document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
         }
 
-        setInterval(updateTimer, 1000);
+        setInterval(updateTimer, 1000); 
         updateTimer();
     </script>
 </body>
